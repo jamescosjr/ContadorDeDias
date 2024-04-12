@@ -30,4 +30,28 @@ describe('API Date Difference Tests', () => {
     expect(response.status).toBe(400);
     expect(response.body.error).toBeDefined();
   });
+
+  it('should return a 400 status code for endDate before startDate', async () => {
+    const response = await request(app)
+      .post('/calculateDifference')
+      .send({
+        startDate: '03-01-2024',
+        endDate: '01-01-2024',
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeDefined();
+  });
+
+  it('should return 1', async () => {
+    const response = await request(app)
+      .post('/calculateDifference')
+      .send({
+        startDate: '01-01-2024',
+        endDate: '01-01-2024',
+      });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ difference: 1 });
+  });
 });
