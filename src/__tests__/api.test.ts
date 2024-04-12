@@ -43,7 +43,7 @@ describe('API Date Difference Tests', () => {
     expect(response.body.error).toBeDefined();
   });
 
-  it('should return 1', async () => {
+  it('should return 1 when the startDate = endDate', async () => {
     const response = await request(app)
       .post('/calculateDifference')
       .send({
