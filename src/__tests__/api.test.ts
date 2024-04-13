@@ -54,4 +54,16 @@ describe('API Date Difference Tests', () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ difference: 1 });
   });
+
+  it('should return the days difference', async () => {
+    const response = await request(app)
+      .post('/calculateDifference')
+      .send({
+        startDate: '01-01-0001',
+        endDate: '01-01-2024',
+      });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ difference: 738886 });
+  });
 });
