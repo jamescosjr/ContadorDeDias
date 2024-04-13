@@ -55,7 +55,7 @@ describe('API Date Difference Tests', () => {
     expect(response.body).toEqual({ difference: 1 });
   });
 
-  it('should return the days difference', async () => {
+  it('should return the days difference. Dates to far away', async () => {
     const response = await request(app)
       .post('/calculateDifference')
       .send({
