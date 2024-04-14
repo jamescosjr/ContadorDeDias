@@ -1,4 +1,4 @@
-import { differenceInDays, addDays, parse, isValid } from 'date-fns';
+import { differenceInDays, addDays, parse, isValid, isBefore } from 'date-fns';
 
 export function calculateDifference(startDate: string, endDate: string): number {
   const parsedStartDate = parse(startDate, 'dd-MM-yyyy', new Date());
@@ -8,7 +8,7 @@ export function calculateDifference(startDate: string, endDate: string): number 
     throw new Error('Datas inválidas. Certifique-se de que elas estão no formato dd-MM-yyyy.');
   }
 
-  if (parsedEndDate < parsedStartDate) {
+  if (isBefore(parsedEndDate, parsedStartDate)) {
     throw new Error('A data de término deve ser posterior à data de início.');
   }
 
